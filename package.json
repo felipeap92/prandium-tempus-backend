@@ -1,0 +1,42 @@
+{
+  "name": "prandium-tempus-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "scripts": {
+    "start": "nodemon",
+    "build": "npm test && tsc",
+    "test": "jest",
+    "lint": "tslint --project tsconfig.json -c tslint.json",
+    "prisma": "prisma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipeap92/prandium-tempus-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipeap92/prandium-tempus-backend/issues"
+  },
+  "homepage": "https://github.com/felipeap92/prandium-tempus-backend#readme",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.24",
+    "@types/jest": "^24.0.12",
+    "@types/ws": "^6.0.1",
+    "jest": "^24.7.1",
+    "nodemon": "^1.19.0",
+    "prisma": "^1.32.0",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "graphql-yoga": "^1.17.4",
+    "reflect-metadata": "^0.1.13",
+    "tsconfig-paths": "^3.8.0",
+    "type-graphql": "^0.17.3"
+  }
+}
