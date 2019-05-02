@@ -6,8 +6,10 @@
   "scripts": {
     "start": "nodemon",
     "build": "npm test && tsc",
-    "test": "jest",
     "lint": "tslint --project tsconfig.json -c tslint.json",
+    "lint-ci": "tslint --project tsconfig.json -c tslint.json --format junit -o reports/junit/js-lint-results.xml",
+    "test": "npm run lint && jest",
+    "test-ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prisma": "prisma"
   },
   "repository": {
@@ -25,7 +27,9 @@
     "@types/aws-lambda": "^8.10.24",
     "@types/jest": "^24.0.12",
     "@types/ws": "^6.0.1",
+    "coveralls": "^3.0.3",
     "jest": "^24.7.1",
+    "jest-junit": "^6.4.0",
     "nodemon": "^1.19.0",
     "prisma": "^1.32.0",
     "ts-jest": "^24.0.2",
