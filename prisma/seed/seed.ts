@@ -11,5 +11,5 @@ import { UserSeed } from './user.seed';
   }).catch((error) => {
     // tslint:disable-next-line: no-console
     console.log(error);
-  })
+  });
 })();

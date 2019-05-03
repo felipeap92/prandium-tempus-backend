@@ -18,7 +18,8 @@ async function bootstrap() {
 
     const options = server.options;
     options.port = 4001;
-    server.start(options, () => console.log("Server is running on http://localhost:4001"));
+    // tslint:disable-next-line: no-console
+    server.start(options, () => console.log('Server is running on http://localhost:4001'));
 }
 
 bootstrap();
