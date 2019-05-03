@@ -1,19 +1,24 @@
 import { GraphQLServer } from 'graphql-yoga';
+import { buildSchema } from 'type-graphql';
+import 'reflect-metadata';
 
-const typeDefs = `
-type Query {
-  info: String!
+import { prisma } from './generated/prisma-client';
+import UserResolver from './user/user.resolver';
+
+async function bootstrap() {
+    const schema = await buildSchema({
+        resolvers: [UserResolver],
+        emitSchemaFile: true,
+    });
+
+    const server = new GraphQLServer({
+        schema,
+        context: { prisma },
+    });
+
+    const options = server.options;
+    options.port = 4001;
+    server.start(options, () => console.log("Server is running on http://localhost:4001"));
 }
-`;
 
-const resolvers = {
-    Query: {
-        info: () => `This is the API of a Hackernews Clone`,
-    },
-};
-
-const server = new GraphQLServer({
-    typeDefs,
-    resolvers,
-});
-server.start(() => console.log(`Server is running on http://localhost:4000`));
+bootstrap();

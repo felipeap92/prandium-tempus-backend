@@ -1,4 +1,7 @@
 type User {
-	id: ID! @id
-	name: String!
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  profileImg: String!
+  createdAt: DateTime! @createdAt
 }
