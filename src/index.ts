@@ -1,16 +1,11 @@
-import { GraphQLServer } from 'graphql-yoga';
-import { buildSchema } from 'type-graphql';
 import 'reflect-metadata';
+import { GraphQLServer } from 'graphql-yoga';
 
 import { prisma } from './generated/prisma-client';
-import UserResolver from './user/user.resolver';
+import { createSchema } from './utils/create-schema';
 
 async function bootstrap() {
-    const schema = await buildSchema({
-        resolvers: [UserResolver],
-        emitSchemaFile: true,
-    });
-
+    const schema = await createSchema();
     const server = new GraphQLServer({
         schema,
         context: { prisma },

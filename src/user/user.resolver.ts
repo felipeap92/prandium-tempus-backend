@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Arg, Query, Resolver, Ctx } from 'type-graphql';
 import { Context } from 'graphql-yoga/dist/types';
 
