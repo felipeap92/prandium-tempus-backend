@@ -4,14 +4,14 @@ import { Context } from 'graphql-yoga/dist/types';
 
 import User from './user';
 
-@Resolver(of => User)
+@Resolver(() => User)
 export default class UserResolver {
-  @Query(returns => User, { nullable: true })
-  getUser(@Arg('email') email: string, @Ctx() context: Context) {
+  @Query(() => User, { name: 'user', description: 'Returns an user by his email.', nullable: true })
+  getUser(@Arg('email', { description: 'User email.' }) email: string, @Ctx() context: Context) {
     return context.prisma.user({ email });
   }
 
-  @Query(returns => [User])
+  @Query(() => [User], { name: 'users', description: 'Returns all registered users.' })
   getAllUsers(@Ctx() context: Context) {
     return context.prisma.users();
   }

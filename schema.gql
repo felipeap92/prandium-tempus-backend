@@ -4,13 +4,24 @@
 # -----------------------------------------------
 
 type Query {
-  getUser(email: String!): User
-  getAllUsers: [User!]!
+  """Returns an user by his email."""
+  user(
+    """User email."""
+    email: String!
+  ): User
+
+  """Returns all registered users."""
+  users: [User!]!
 }
 
-"""The user model"""
+"""User model."""
 type User {
+  """User name."""
   name: String!
+
+  """User email. Mostly used for user identification and notification."""
   email: String!
+
+  """User profile image URL."""
   profileImg: String
 }
