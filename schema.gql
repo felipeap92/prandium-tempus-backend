@@ -3,6 +3,20 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Mutation {
+  """Signup a new user."""
+  signUp(
+    """User profile image URL."""
+    profileImg: String
+
+    """User email."""
+    email: String!
+
+    """User full name."""
+    name: String!
+  ): User!
+}
+
 type Query {
   """Returns an user by his email."""
   user(

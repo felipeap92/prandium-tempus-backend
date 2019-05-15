@@ -1,4 +1,4 @@
-import faker = require('faker');
+import * as faker from 'faker';
 
 import { prisma, UserCreateInput } from './../../src/generated/prisma-client';
 import User from '../../src/user/user';

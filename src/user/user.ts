@@ -6,7 +6,12 @@ import { Field, ObjectType } from 'type-graphql';
 @ObjectType({ description: 'User model.' })
 export default class User {
   /**
-   * User name.
+   * User unique ID.
+   */
+  public id: string;
+
+  /**
+   * User full name.
    */
   @Field(() => String, { description: 'User name.' })
   public name: string;
@@ -25,6 +30,11 @@ export default class User {
    */
   @Field(() => String, { description: 'User profile image URL.', nullable: true })
   public profileImg: string;
+
+  /**
+   * Date when user was created.
+   */
+  public createdAt: Date | string;
 
   constructor(name: string, email: string, profileImg?: string) {
     this.name = name;
