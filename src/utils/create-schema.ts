@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 
 /**
@@ -9,7 +10,7 @@ import { buildSchema } from 'type-graphql';
  * @param emitSchemaFile - `true` to export the generated GraphQL schema, otherwise `false`.
  * @returns A Promise that returns a GraphQLSchema object.
  */
-export const createSchema = (emitSchemaFile: boolean = true) => {
+export const createSchema = (emitSchemaFile: string | boolean = true) => {
     return buildSchema({
         resolvers: [__dirname + '/../**/*.resolver.ts'],
         emitSchemaFile,

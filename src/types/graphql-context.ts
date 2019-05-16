@@ -3,7 +3,7 @@ import { Prisma } from 'src/generated/prisma-client';
 /**
  * Contains GraphQL context object definition.
  */
-export interface GqlContext {
+export interface GraphQLContext {
     /**
      * Generated Prisma client.
      */
