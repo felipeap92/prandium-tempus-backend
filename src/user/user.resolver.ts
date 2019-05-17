@@ -11,7 +11,7 @@ export default class UserResolver {
   getUser(
     @Arg('email', { description: 'User email.' }) email: string,
     @Ctx() context: GraphQLContext,
-  ): Promise<User> {
+  ): Promise<User | null> {
     return context.prisma.user({ email });
   }
 
