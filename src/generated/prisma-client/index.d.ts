@@ -192,7 +192,7 @@ export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   email: String;
-  profileImg: String;
+  profileImg?: Maybe<String>;
 }
 
 export interface UserUpdateInput {
@@ -224,7 +224,7 @@ export interface User {
   id: ID_Output;
   name: String;
   email: String;
-  profileImg: String;
+  profileImg?: String;
   createdAt: DateTimeOutput;
 }
 
@@ -378,7 +378,7 @@ export interface UserPreviousValues {
   id: ID_Output;
   name: String;
   email: String;
-  profileImg: String;
+  profileImg?: String;
   createdAt: DateTimeOutput;
 }
 

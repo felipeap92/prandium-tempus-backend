@@ -14,7 +14,7 @@ export default class User {
   /**
    * User full name.
    */
-  @Field(() => String, { description: 'User name.' })
+  @Field(() => String, { description: 'User full name.' })
   public name: string;
 
   /**
@@ -30,7 +30,7 @@ export default class User {
    * User profile image URL.
    */
   @Field(() => String, { description: 'User profile image URL.', nullable: true })
-  public profileImg: string;
+  public profileImg?: string;
 
   /**
    * Date when user was created.
@@ -40,9 +40,6 @@ export default class User {
   constructor(name: string, email: string, profileImg?: string) {
     this.name = name;
     this.email = email;
-
-    if (profileImg) {
-      this.profileImg = profileImg;
-    }
+    this.profileImg = profileImg;
   }
 }

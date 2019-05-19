@@ -13,19 +13,17 @@ let schema: GraphQLSchema;
  * Used to test a complete GraphQL operation call (quary and mutation).
  */
 export default (testName: string, testCases: GraphQLTestCase[]) => {
-    describe(testName, () => {
-        testCases.forEach((testCase) => {
-            const { name, source, variables, expected } = testCase;
-            test(name, async () => {
-                const result = await graphql(schema || (schema = await createSchema(false)), source, null, context, variables);
-                expect(result).toEqual(expected);
-            });
+    testCases.forEach((testCase) => {
+        const { name, source, variables, expected } = testCase;
+        test(name, async () => {
+            const result = await graphql(schema || (schema = await createSchema(false)), source, null, context, variables);
+            expect(result).toEqual(expected);
         });
     });
 };
 
 /**
- * Defines GraphQL Call options.
+ * Defines GraphQL test case object.
  */
 export interface GraphQLTestCase {
     /**
@@ -49,6 +47,9 @@ export interface GraphQLTestCase {
     expected: Maybe<{ [key: string]: any }>;
 }
 
+/**
+ * GraphQL response errors as a `GraphQLError` object.
+ */
 export const error = {
     variableRequired: (variable: string, type: string) => (
         new GraphQLError(`Variable "$${variable}" of required type "${type}" was not provided.`)
@@ -58,5 +59,8 @@ export const error = {
     ),
     uniqueConstraintViolated: (field: string, type: string) => (
         new GraphQLError(`A unique constraint would be violated on ${type}. Details: Field name = ${field}`)
+    ),
+    argumentValidationError: () => (
+        new GraphQLError('Argument Validation Error')
     ),
 };

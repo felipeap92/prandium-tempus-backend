@@ -56,7 +56,7 @@ type User {
   id: ID!
   name: String!
   email: String!
-  profileImg: String!
+  profileImg: String
   createdAt: DateTime!
 }
 
@@ -70,7 +70,7 @@ input UserCreateInput {
   id: ID
   name: String!
   email: String!
-  profileImg: String!
+  profileImg: String
 }
 
 type UserEdge {
@@ -95,7 +95,7 @@ type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
-  profileImg: String!
+  profileImg: String
   createdAt: DateTime!
 }
 

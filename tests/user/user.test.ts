@@ -59,21 +59,49 @@ describe('User Tests', () => {
                 ],
             },
         }, {
-            name: 'Invalid user',
+            name: 'With inexistent user',
             source: `query User($email: String!) {
-                user(email: $email) {
-                    profileImg
-                }
-            }`,
+                        user(email: $email) {
+                            name
+                        }
+                    }`,
             variables: { email: 'invalid.user@invalid.com' },
             expected: { data: { user: null } },
         }, {
+            name: 'With invalid "email"',
+            source: `query User($email: String!) {
+                        user(email: $email) {
+                            name
+                        }
+                    }`,
+            variables: { email: 'this is not an email!' },
+            expected: {
+                data: { user: null },
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
+            name: 'With empty "email"',
+            source: `query User($email: String!) {
+                        user(email: $email) {
+                            name
+                        }
+                    }`,
+            variables: { email: '' },
+            expected: {
+                data: { user: null },
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
             name: 'Without args',
             source: `query User($email: String!) {
-                user(email: $email) {
-                    profileImg
-                }
-            }`,
+                        user(email: $email) {
+                            name
+                        }
+                    }`,
             variables: {},
             expected: {
                 errors: [
@@ -234,6 +262,104 @@ describe('User Tests', () => {
                 data: null,
                 errors: [
                     error.uniqueConstraintViolated('email', 'User'),
+                ],
+            },
+        }, {
+            name: 'With empty "name"',
+            source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
+                        signUp(name: $name, email: $email, profileImg: $profileImg) {
+                            name
+                        }
+                    }`,
+            variables: { name: '', email: mockSignUpUser.email },
+            expected: {
+                data: null,
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
+            name: 'With invalid "name" (too short)',
+            source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
+                        signUp(name: $name, email: $email, profileImg: $profileImg) {
+                            name
+                        }
+                    }`,
+            variables: { name: 'A', email: mockSignUpUser.email },
+            expected: {
+                data: null,
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
+            name: 'With invalid "name" (too long)',
+            source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
+                        signUp(name: $name, email: $email, profileImg: $profileImg) {
+                            name
+                        }
+                    }`,
+            variables: { name: 'This Full Name Exceeds The Maximum Length Permitted And Should Be Denied', email: mockSignUpUser.email },
+            expected: {
+                data: null,
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
+            name: 'With invalid "email"',
+            source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
+                        signUp(name: $name, email: $email, profileImg: $profileImg) {
+                            name
+                        }
+                    }`,
+            variables: { name: mockSignUpUser.name, email: 'this is not an email!' },
+            expected: {
+                data: null,
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
+            name: 'With empty "email"',
+            source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
+                        signUp(name: $name, email: $email, profileImg: $profileImg) {
+                            name
+                        }
+                    }`,
+            variables: { name: mockSignUpUser.name, email: '' },
+            expected: {
+                data: null,
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
+            name: 'With invalid "profileImage"',
+            source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
+                        signUp(name: $name, email: $email, profileImg: $profileImg) {
+                            name
+                        }
+                    }`,
+            variables: { name: mockSignUpUser.name, email: mockSignUpUser.email, profileImg: 'this is not profile image URL' },
+            expected: {
+                data: null,
+                errors: [
+                    error.argumentValidationError(),
+                ],
+            },
+        }, {
+            name: 'With empty "profileImage"',
+            source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
+                        signUp(name: $name, email: $email, profileImg: $profileImg) {
+                            name
+                        }
+                    }`,
+            variables: { name: mockSignUpUser.name, email: mockSignUpUser.email, profileImg: '' },
+            expected: {
+                data: null,
+                errors: [
+                    error.argumentValidationError(),
                 ],
             },
         },
