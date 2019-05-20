@@ -2,8 +2,8 @@ import 'reflect-metadata';
 import { Query, Resolver, Ctx, Mutation, Arg, Args } from 'type-graphql';
 
 import User from './user';
-import GetUserArgs from './get-user-args';
-import UserSignUpArgs from './sign-up-args';
+import GetUserArgs from './get-user.args';
+import UserSignUpArgs from './sign-up.args';
 import { UserCreateInput } from 'src/generated/prisma-client';
 import { GraphQLContext } from 'src/types/graphql-context';
 
