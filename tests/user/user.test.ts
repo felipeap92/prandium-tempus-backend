@@ -279,7 +279,7 @@ describe('User Tests', () => {
                 ],
             },
         }, {
-            name: 'With invalid "name" (too short)',
+            name: 'With invalid "name" - too short',
             source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
                         signUp(name: $name, email: $email, profileImg: $profileImg) {
                             name
@@ -293,7 +293,7 @@ describe('User Tests', () => {
                 ],
             },
         }, {
-            name: 'With invalid "name" (too long)',
+            name: 'With invalid "name" - too long',
             source: `mutation SignUp($name: String!, $email: String!, $profileImg: String) {
                         signUp(name: $name, email: $email, profileImg: $profileImg) {
                             name

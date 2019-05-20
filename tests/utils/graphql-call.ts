@@ -13,11 +13,13 @@ let schema: GraphQLSchema;
  * Used to test a complete GraphQL operation call (quary and mutation).
  */
 export default (testName: string, testCases: GraphQLTestCase[]) => {
-    testCases.forEach((testCase) => {
-        const { name, source, variables, expected } = testCase;
-        test(name, async () => {
-            const result = await graphql(schema || (schema = await createSchema(false)), source, null, context, variables);
-            expect(result).toEqual(expected);
+    describe(testName, () => {
+        testCases.forEach((testCase) => {
+            const { name, source, variables, expected } = testCase;
+            test(name, async () => {
+                const result = await graphql(schema || (schema = await createSchema(false)), source, null, context, variables);
+                expect(result).toEqual(expected);
+            });
         });
     });
 };
