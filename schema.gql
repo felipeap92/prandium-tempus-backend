@@ -6,14 +6,14 @@
 type Mutation {
   """Signup a new user."""
   signUp(
-    """User profile image URL."""
-    profileImg: String
+    """User full name."""
+    name: String!
 
     """User email."""
     email: String!
 
-    """User full name."""
-    name: String!
+    """User profile image URL."""
+    profileImg: String
   ): User!
 }
 
@@ -30,7 +30,7 @@ type Query {
 
 """User model."""
 type User {
-  """User name."""
+  """User full name."""
   name: String!
 
   """User email. Mostly used for user identification and notification."""

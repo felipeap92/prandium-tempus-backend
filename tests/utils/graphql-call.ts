@@ -25,7 +25,7 @@ export default (testName: string, testCases: GraphQLTestCase[]) => {
 };
 
 /**
- * Defines GraphQL Call options.
+ * Defines GraphQL test case object.
  */
 export interface GraphQLTestCase {
     /**
@@ -49,6 +49,9 @@ export interface GraphQLTestCase {
     expected: Maybe<{ [key: string]: any }>;
 }
 
+/**
+ * GraphQL response errors as a `GraphQLError` object.
+ */
 export const error = {
     variableRequired: (variable: string, type: string) => (
         new GraphQLError(`Variable "$${variable}" of required type "${type}" was not provided.`)
@@ -58,5 +61,8 @@ export const error = {
     ),
     uniqueConstraintViolated: (field: string, type: string) => (
         new GraphQLError(`A unique constraint would be violated on ${type}. Details: Field name = ${field}`)
+    ),
+    argumentValidationError: () => (
+        new GraphQLError('Argument Validation Error')
     ),
 };

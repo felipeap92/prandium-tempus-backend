@@ -1,17 +1,16 @@
 import 'reflect-metadata';
-import { Arg, Query, Resolver, Ctx, Mutation } from 'type-graphql';
+import { Query, Resolver, Ctx, Mutation, Arg, Args } from 'type-graphql';
 
 import User from './user';
-import { GraphQLContext } from 'src/types/graphql-context';
+import GetUserArgs from './get-user.args';
+import UserSignUpArgs from './sign-up.args';
 import { UserCreateInput } from 'src/generated/prisma-client';
+import { GraphQLContext } from 'src/types/graphql-context';
 
 @Resolver(User)
 export default class UserResolver {
   @Query(() => User, { name: 'user', description: 'Returns an user by his email.', nullable: true })
-  getUser(
-    @Arg('email', { description: 'User email.' }) email: string,
-    @Ctx() context: GraphQLContext,
-  ): Promise<User> {
+  getUser(@Args() { email }: GetUserArgs, @Ctx() context: GraphQLContext): Promise<User | null> {
     return context.prisma.user({ email });
   }
 
@@ -21,12 +20,7 @@ export default class UserResolver {
   }
 
   @Mutation(() => User, { name: 'signUp', description: 'Signup a new user.' })
-  signUp(
-    @Arg('name', { description: 'User full name.' }) name: string,
-    @Arg('email', { description: 'User email.' }) email: string,
-    @Arg('profileImg', { description: 'User profile image URL.', nullable: true }) profileImg: string,
-    @Ctx() context: GraphQLContext,
-  ): Promise<User> {
+  signUp(@Args() { name, email, profileImg }: UserSignUpArgs, @Ctx() context: GraphQLContext): Promise<User> {
     return context.prisma.createUser({ name, email, profileImg } as UserCreateInput);
   }
 }
