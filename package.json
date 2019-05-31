@@ -5,7 +5,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "start": "nodemon",
-    "start-prod": "npm run build && NODE_ENV=production node dist/index.js",
+    "start-prod": "NODE_ENV=production node dist/index.js",
     "build": "tsc",
     "lint": "tslint --project tsconfig.json -c tslint.json",
     "lint-ci": "tslint --project tsconfig.json -c tslint.json --format junit -o reports/junit/js-lint-results.xml",
