@@ -11,8 +11,10 @@ import { buildSchema } from 'type-graphql';
  * @returns A Promise that returns a GraphQLSchema object.
  */
 export const createSchema = (emitSchemaFile: string | boolean = true) => {
+    const pathExtension = (process.env.NODE_ENV === 'production' ? 'js' : 'ts');
+    const path = `${__dirname}/../**/*.resolver.${pathExtension}`;
     return buildSchema({
-        resolvers: [__dirname + '/../**/*.resolver.ts'],
+        resolvers: [path],
         emitSchemaFile,
     });
 };
