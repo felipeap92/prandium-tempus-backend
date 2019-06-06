@@ -1,6 +1,14 @@
-# Prandium Tempus (Backend Server)
+# Prandium Tempus (Backend)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+Do you want to organize a group food ordering? We got you!
+
+In **Prandium Tempus** ("Lunch Time" in english) you can post an order from your favorite restaurant and we'll send an email to all your friends so they can join it and eat together.
+
+This is the backend repository and it is a **GraphQL API** implemented in NodeJS with Typescript using [Apollo](https://www.apollographql.com/), [TypeGraphQL](https://typegraphql.ml/), [Prisma](https://www.prisma.io/) and more.
+
+ps: You can find the **frontend** inplementation [here](https://github.com/oliveiraeloi/prandium-tempus-frontend).
 
 ## Builds
 
