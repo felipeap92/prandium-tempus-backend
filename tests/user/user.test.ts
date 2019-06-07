@@ -7,7 +7,7 @@ import { error } from '../utils/graphql-call';
 
 describe('User Tests', () => {
     const mockUser = users[Math.floor(Math.random() * users.length)];
-    const mockSignUpUser = new User(faker.name.firstName(1), faker.internet.email(), faker.internet.avatar());
+    const mockSignUpUser = new User('Test User', 'test.user@gmail.com', faker.internet.avatar());
     const queryUserTestCases: GraphQLTestCase[] = [
         {
             name: 'With all fields',

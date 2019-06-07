@@ -13,7 +13,8 @@ async function bootstrap() {
     });
 
     // Start the server
-    const { url } = await server.listen(4000);
+    const port = process.env.PORT || 4000;
+    const { url } = await server.listen(port);
     // tslint:disable-next-line: no-console
     console.log(`Server is running at ${url}`);
 }

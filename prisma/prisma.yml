@@ -9,7 +9,7 @@ databaseType: document
 
 # Specifies language & location for the generated Prisma client
 generate:
-  - generator: javascript-client
+  - generator: typescript-client
     output: ../src/generated/prisma-client
 
 # Seeds the service with data (must use 'prisma seed' command).
